@@ -1,7 +1,5 @@
 <?php namespace Cvsouth\Commands\Commands;
 
-use Illuminate\Console\Command;
-
 use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\Facades\Storage;
@@ -24,14 +22,10 @@ class Reset extends Command
 
             $this->php_artisan('permit');
 
-        if(package_exists('laravel/horizon'))
+        if($this->package_exists('laravel/horizon'))
 
             $this->php_artisan('horizon:terminate');
 
         else $this->php_artisan('queue:restart');
-    }
-    private function php_artisan($command, $params = [])
-    {
-        return $this->call($command, $params);
     }
 }

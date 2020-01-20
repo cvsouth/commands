@@ -1,7 +1,5 @@
 <?php namespace Cvsouth\Commands\Commands;
 
-use Illuminate\Console\Command;
-
 class CleanLogs extends Command
 {
     protected $signature = 'clean-logs {--lines=0}';
@@ -14,6 +12,6 @@ class CleanLogs extends Command
 
         foreach(glob(storage_path('logs/') . '*.{log}', GLOB_BRACE) as $log_file)
 
-            echo terminal('echo "`tail -' . $lines . ' ' . $log_file . '`" > ' . $log_file);
+            echo $this->terminal('echo "`tail -' . $lines . ' ' . $log_file . '`" > ' . $log_file);
     }
 }

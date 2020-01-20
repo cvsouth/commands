@@ -1,7 +1,5 @@
 <?php namespace Cvsouth\Commands\Commands;
 
-use Illuminate\Console\Command;
-
 use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +20,7 @@ class ResetFresh extends Command
 
         $this->php_artisan('config:clear');
 
-        echo terminal('touch storage/logs/laravel.log');
+        echo $this->terminal('touch storage/logs/laravel.log');
 
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 
@@ -32,11 +30,11 @@ class ResetFresh extends Command
 
             echo $this->php_artisan('permit');
 
-        if(package_exists('laravel/passport'))
+        if($this->package_exists('laravel/passport'))
 
             $this->php_artisan('passport:install', ['--force' => 'default']);
 
-        if(package_exists('laravel/horizon'))
+        if($this->package_exists('laravel/horizon'))
 
             $this->php_artisan('horizon:terminate');
 
@@ -49,9 +47,5 @@ class ResetFresh extends Command
         if(env('FETCH_CURRENCIES_DURING_RESET', true))
 
             $this->php_artisan('fetch-currency-rates');
-    }
-    private function php_artisan($command, $params = [])
-    {
-        return $this->call($command, $params);
     }
 }
