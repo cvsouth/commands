@@ -1,0 +1,45 @@
+{
+    "name": "cvsouth/commands",
+
+    "description": "Commands",
+
+    "require": {
+
+        "illuminate/support": "6.*",
+
+        "illuminate/routing": "6.*",
+
+        "illuminate/database": "6.*"
+    },
+    "license": "proprietary",
+
+    "authors": [
+        {
+            "name": "Colin South",
+
+            "email": "colin@riseresolution.com"
+        }
+    ],
+    "autoload": {
+
+        "psr-4": {
+
+            "Cvsouth\\Commands\\": "src/"
+        },
+        "files":
+        [
+        ]
+    },
+    "minimum-stability": "dev",
+
+    "extra":
+    {
+        "laravel":
+        {
+            "providers":
+            [
+                "Cvsouth\\Commands\\Providers\\Laravel"
+            ]
+        }
+    }
+}
