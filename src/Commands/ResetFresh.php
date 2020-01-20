@@ -43,9 +43,5 @@ class ResetFresh extends Command
         if(!App::environment('local'))
 
             $this->php_artisan('schedule:run');
-
-        if(env('FETCH_CURRENCIES_DURING_RESET', true))
-
-            $this->php_artisan('fetch-currency-rates');
     }
 }
