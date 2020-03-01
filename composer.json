@@ -9,7 +9,9 @@
 
         "illuminate/routing": "6.*",
 
-        "illuminate/database": "6.*"
+        "illuminate/database": "6.*",
+
+        "cvsouth/common": "dev-master"
     },
     "license": "proprietary",
 
@@ -17,7 +19,7 @@
         {
             "name": "Colin South",
 
-            "email": "colin@riseresolution.com"
+            "email": "contact@colinsouth.com"
         }
     ],
     "autoload": {

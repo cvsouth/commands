@@ -1,5 +1,7 @@
 <?php namespace Cvsouth\Commands\Commands;
 
+use Cvsouth\Common\Commands\Command;
+
 use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\Facades\Storage;

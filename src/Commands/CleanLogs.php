@@ -1,5 +1,7 @@
 <?php namespace Cvsouth\Commands\Commands;
 
+use Cvsouth\Common\Commands\Command;
+
 class CleanLogs extends Command
 {
     protected $signature = 'clean-logs {--lines=0}';

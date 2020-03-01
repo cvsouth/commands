@@ -1,5 +1,7 @@
 <?php namespace Cvsouth\Commands\Commands;
 
+use Cvsouth\Common\Commands\Command;
+
 class Permit extends Command
 {
     protected $signature = 'permit';
