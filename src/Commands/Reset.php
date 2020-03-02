@@ -1,6 +1,6 @@
 <?php namespace Cvsouth\Commands\Commands;
 
-use Cvsouth\Common\Commands\Command;
+use Cvsouth\Commands\Commands\Command;
 
 use Illuminate\Support\Facades\App;
 

@@ -9,9 +9,7 @@
 
         "illuminate/routing": "6.*",
 
-        "illuminate/database": "6.*",
-
-        "cvsouth/common": "dev-master"
+        "illuminate/database": "6.*"
     },
     "license": "proprietary",
 
