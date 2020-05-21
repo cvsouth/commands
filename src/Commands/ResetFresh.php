@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class ResetFresh extends Command
 {
     protected $signature = 'reset:fresh';
-   
+
     protected $description = 'Reset application from scratch';
 
     public function handle() : void
