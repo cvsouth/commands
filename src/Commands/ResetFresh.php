@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class ResetFresh extends Command
 {
     protected $signature = 'reset:fresh';
-
+   
     protected $description = 'Reset application from scratch';
 
     public function handle() : void
@@ -26,7 +26,7 @@ class ResetFresh extends Command
 
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 
-        $this->php_artisan('route:cache');
+        $this->php_artisan('route:clear');
 
         if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
 
