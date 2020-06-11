@@ -18,7 +18,7 @@ class Reset extends Command
 
         $this->php_artisan('config:cache');
 
-        $this->php_artisan('route:cache');
+//        $this->php_artisan('route:cache');
 
         if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
 
