@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\Facades\Storage;
 
+use Exception;
+
 class Deploy extends Command
 {
     protected $signature = 'deploy';
@@ -18,11 +20,7 @@ class Deploy extends Command
 
         $this->php_artisan('config:cache');
 
-        $this->php_artisan('route:cache');
-
-        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
-
-            $this->php_artisan('permit');
+        try { $this->php_artisan('route:cache'); } catch(Exception $e) { }
 
         $this->php_artisan('migrate', ['--force' => 'default', '--no-interaction' => 'default']);
 
