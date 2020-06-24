@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\Facades\Storage;
 
-use Exception;
-
 class ResetFresh extends Command
 {
     protected $signature = 'reset:fresh';
-
+   
     protected $description = 'Reset application from scratch';
 
     public function handle() : void
@@ -28,7 +26,11 @@ class ResetFresh extends Command
 
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 
-        try { $this->php_artisan('route:cache'); } catch(Exception $e) { }
+        $this->php_artisan('route:clear');
+
+        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+
+            echo $this->php_artisan('permit');
 
         if($this->package_exists('laravel/passport'))
 

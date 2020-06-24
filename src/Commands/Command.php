@@ -8,9 +8,11 @@ abstract class Command extends BaseCommand
 {
     protected function terminal($command)
     {
-        if(is_array($command)) $command = implode(' ', $command);
-        
-        return shell_exec($command);
+        $process = new Process($command);
+
+        $process->run();
+
+        return $process->getOutput();
     }
     protected function package_exists($package)
     {

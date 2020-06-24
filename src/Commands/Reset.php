@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\App;
 
 use Illuminate\Support\Facades\Storage;
 
-use Exception;
-
 class Reset extends Command
 {
     protected $signature = 'reset';
-
+   
     protected $description = 'Reset application';
 
     public function handle() : void
@@ -20,7 +18,11 @@ class Reset extends Command
 
         $this->php_artisan('config:cache');
 
-        try { $this->php_artisan('route:cache'); } catch(Exception $e) { }
+        $this->php_artisan('route:clear');
+
+        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+
+            $this->php_artisan('permit');
 
         if($this->package_exists('laravel/horizon'))
 
