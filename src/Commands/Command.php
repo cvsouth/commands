@@ -8,11 +8,19 @@ abstract class Command extends BaseCommand
 {
     protected function terminal($command)
     {
-        $process = new Process($command);
-
-        $process->run();
-
-        return $process->getOutput();
+        if(is_array($command)) $command = implode(' ', $command);
+        
+        return shell_exec($command);
+        
+//        if(package_version_compare('symfony/process', '5', '>=') && !is_array($command))
+//
+//            $command = [$command];
+//
+//        $process = new Process($command);
+//
+//        $process->run();
+//
+//        return $process->getOutput();
     }
     protected function package_exists($package)
     {

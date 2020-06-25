@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class ResetFresh extends Command
 {
     protected $signature = 'reset:fresh';
-   
+
     protected $description = 'Reset application from scratch';
 
     public function handle() : void
@@ -20,17 +20,11 @@ class ResetFresh extends Command
 
         $this->php_artisan('key:generate');
 
-        $this->php_artisan('config:clear');
-
-        echo $this->terminal('touch storage/logs/laravel.log');
+//        $this->php_artisan('config:clear');
 
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 
-        $this->php_artisan('route:clear');
-
-        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
-
-            echo $this->php_artisan('permit');
+        $this->php_artisan('route:cache');
 
         if($this->package_exists('laravel/passport'))
 
