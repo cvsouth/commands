@@ -24,9 +24,15 @@ class ResetFresh extends Command
 
         $this->php_artisan('event:cache');
 
+        echo $this->terminal('touch storage/logs/laravel.log');
+
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 
         $this->php_artisan('route:clear');
+
+        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+
+            echo $this->php_artisan('permit');
 
         if($this->package_exists('laravel/passport'))
 
