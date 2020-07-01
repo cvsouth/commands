@@ -16,9 +16,9 @@ class Deploy extends Command
     {
         $this->php_artisan('cache:clear');
 
-        $this->php_artisan('config:cache');
+        $this->php_artisan('config:clear');
 
-        $this->php_artisan('route:clear');
+        $this->php_artisan('route:cache');
 
         $this->php_artisan('event:cache');
 
