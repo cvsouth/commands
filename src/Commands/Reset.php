@@ -18,7 +18,7 @@ class Reset extends Command
 
         $this->php_artisan('config:clear');
 
-        $this->php_artisan('route:cache');
+        $this->php_artisan('route:clear');
 
         $this->php_artisan('event:cache');
 
