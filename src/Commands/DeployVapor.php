@@ -10,7 +10,7 @@ class DeployVapor extends Command
 {
     protected $signature = 'deploy-vapor';
 
-    protected $description = 'Deploy application to Vapor';
+    protected $description = 'Deploy application with Vapor';
 
     public function handle() : void
     {

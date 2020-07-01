@@ -18,13 +18,9 @@ class Reset extends Command
 
         $this->php_artisan('config:clear');
 
-        $this->php_artisan('route:clear');
-
         $this->php_artisan('event:cache');
 
-        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
-
-            $this->php_artisan('permit');
+        $this->php_artisan('route:clear');
 
         if($this->package_exists('laravel/horizon'))
 
