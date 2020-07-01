@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Storage;
 class Deploy extends Command
 {
     protected $signature = 'deploy';
-
+   
     protected $description = 'Deploy application';
 
     public function handle() : void
     {
         $this->php_artisan('cache:clear');
 
-//        $this->php_artisan('config:cache');
+        $this->php_artisan('config:cache');
 
-        $this->php_artisan('route:cache');
+        $this->php_artisan('route:clear');
+
+        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+
+            $this->php_artisan('permit');
 
         $this->php_artisan('migrate', ['--force' => 'default', '--no-interaction' => 'default']);
 

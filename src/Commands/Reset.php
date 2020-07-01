@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Storage;
 class Reset extends Command
 {
     protected $signature = 'reset';
-
+   
     protected $description = 'Reset application';
 
     public function handle() : void
     {
         $this->php_artisan('cache:clear');
 
-//        $this->php_artisan('config:cache');
+        $this->php_artisan('config:cache');
 
-        $this->php_artisan('route:cache');
+        $this->php_artisan('route:clear');
+
+        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+
+            $this->php_artisan('permit');
 
         if($this->package_exists('laravel/horizon'))
 
