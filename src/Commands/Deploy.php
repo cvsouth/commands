@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Deploy extends Command
 {
     protected $signature = 'deploy';
-   
+
     protected $description = 'Deploy application';
 
     public function handle() : void
@@ -19,6 +19,8 @@ class Deploy extends Command
         $this->php_artisan('config:cache');
 
         $this->php_artisan('route:clear');
+
+        $this->php_artisan('event:cache');
 
         if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
 

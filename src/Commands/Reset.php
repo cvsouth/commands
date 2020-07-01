@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Reset extends Command
 {
     protected $signature = 'reset';
-   
+
     protected $description = 'Reset application';
 
     public function handle() : void
@@ -19,6 +19,8 @@ class Reset extends Command
         $this->php_artisan('config:cache');
 
         $this->php_artisan('route:clear');
+
+        $this->php_artisan('event:cache');
 
         if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
 
