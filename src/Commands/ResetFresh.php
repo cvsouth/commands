@@ -4,6 +4,8 @@ use Cvsouth\Commands\Commands\Command;
 
 use Illuminate\Support\Facades\App;
 
+use Illuminate\Support\Facades\File;
+
 use Illuminate\Support\Facades\Storage;
 
 class ResetFresh extends Command
@@ -33,6 +35,10 @@ class ResetFresh extends Command
         if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
 
             echo $this->php_artisan('permit');
+
+        File::delete(public_path('storage'));
+
+        $this->php_artisan('storage:link');
 
         if($this->package_exists('laravel/passport'))
 
