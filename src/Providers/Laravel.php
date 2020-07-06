@@ -6,6 +6,8 @@ use Cvsouth\Commands\Commands\Permit;
 
 use Cvsouth\Commands\Commands\ResetFresh;
 
+use Cvsouth\Commands\Commands\ResetVapor;
+
 use Cvsouth\Commands\Commands\Reset;
 
 use Cvsouth\Commands\Commands\Deploy;
@@ -31,6 +33,8 @@ class Laravel extends BaseServiceProvider
                 DeployVapor::class,
 
                 Reset::class,
+
+                ResetVapor::class,
 
                 ResetFresh::class,
             ]);
