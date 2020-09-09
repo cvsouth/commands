@@ -20,19 +20,31 @@ class ResetFresh extends Command
 
         $this->php_artisan('clean-logs');
 
+        $this->terminal('touch storage/logs/laravel.log');
+
         $this->php_artisan('key:generate');
 
-        $this->php_artisan('config:clear');
+        if(app()->environment('local'))
 
-        $this->php_artisan('event:cache');
+            $this->php_artisan('config:clear');
 
-        echo $this->terminal('touch storage/logs/laravel.log');
+        else $this->php_artisan('config:cache');
+
+        if(app()->environment('local'))
+
+            $this->php_artisan('event:clear');
+
+        else $this->php_artisan('event:cache');
 
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 
-        $this->php_artisan('route:clear');
+        if(app()->environment('local'))
 
-        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+            $this->php_artisan('event:clear');
+
+        else $this->php_artisan('event:cache');
+
+        if(env('PERMIT_DURING_RESET', false) && app()->environment('local', 'testing'))
 
             echo $this->php_artisan('permit');
 
@@ -50,8 +62,6 @@ class ResetFresh extends Command
 
         else $this->php_artisan('queue:restart');
 
-        if(!App::environment('local'))
-
-            $this->php_artisan('schedule:run');
+        $this->php_artisan('schedule:run');
     }
 }

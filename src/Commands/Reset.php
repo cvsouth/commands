@@ -2,8 +2,6 @@
 
 use Cvsouth\Commands\Commands\Command;
 
-use Illuminate\Support\Facades\App;
-
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Support\Facades\Storage;
@@ -18,13 +16,25 @@ class Reset extends Command
     {
         $this->php_artisan('cache:clear');
 
-        $this->php_artisan('config:clear');
+        if(app()->environment('local'))
 
-        $this->php_artisan('route:clear');
+            $this->php_artisan('config:clear');
 
-        $this->php_artisan('event:cache');
+        else $this->php_artisan('config:cache');
 
-        if(env('PERMIT_DURING_RESET', false) && App::environment('local', 'testing'))
+        if(app()->environment('local'))
+
+            $this->php_artisan('route:clear');
+
+        else $this->php_artisan('route:cache');
+
+        if(app()->environment('local'))
+
+            $this->php_artisan('event:clear');
+
+        else $this->php_artisan('event:cache');
+
+        if(env('PERMIT_DURING_RESET', false) && app()->environment('local', 'testing'))
 
             $this->php_artisan('permit');
         
