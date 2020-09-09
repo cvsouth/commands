@@ -5,11 +5,11 @@
 
     "require": {
 
-        "illuminate/support": "6.*|^7.0",
+        "illuminate/support": "6.*|^7.0|^8.0",
 
-        "illuminate/routing": "6.*|^7.0",
+        "illuminate/routing": "6.*|^7.0|^8.0",
 
-        "illuminate/database": "6.*|^7.0",
+        "illuminate/database": "6.*|^7.0|^8.0",
 
         "cvsouth/common": "dev-master"
     },
