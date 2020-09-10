@@ -24,17 +24,17 @@ class ResetFresh extends Command
 
         $this->php_artisan('key:generate');
 
-        if(app()->environment('local'))
+        if(true || app()->environment('local')) // TODO: Change when
 
             $this->php_artisan('config:clear');
 
         else $this->php_artisan('config:cache');
 
-        if(app()->environment('local'))
+        if(true || app()->environment('local')) // TODO: Change when
 
-            $this->php_artisan('event:clear');
+            $this->php_artisan('route:clear');
 
-        else $this->php_artisan('event:cache');
+        else $this->php_artisan('route:cache');
 
         $this->php_artisan('migrate:fresh', ['--force' => 'default', '--no-interaction' => 'default']);
 

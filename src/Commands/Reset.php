@@ -16,13 +16,13 @@ class Reset extends Command
     {
         $this->php_artisan('cache:clear');
 
-        if(app()->environment('local'))
+        if(true || app()->environment('local')) // TODO: Change when
 
             $this->php_artisan('config:clear');
 
         else $this->php_artisan('config:cache');
 
-        if(app()->environment('local'))
+        if(true || app()->environment('local')) // TODO: Change when
 
             $this->php_artisan('route:clear');
 
